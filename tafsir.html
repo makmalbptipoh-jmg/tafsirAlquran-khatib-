@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quranic Insights</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#11b4d4",
+            "background-light": "#f6f8f8",
+            "background-dark": "#101f22",
+          },
+          fontFamily: { display: ["Inter"] },
+          borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" }
+        }
+      }
+    };
+  </script>
+  <style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    body { min-height: max(884px, 100dvh); }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100">
+  <div class="flex h-screen flex-col">
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+      <div class="mx-auto flex max-w-7xl items-center justify-between p-4">
+        <button id="btnToggleTheme" class="rounded-full border border-gray-300/50 px-3 py-1 text-xs text-gray-600 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">Theme</button>
+        <h1 class="text-lg font-bold">Quranic Insights</h1>
+        <button data-tab="search" class="rounded-full p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="flex-1 overflow-y-auto pb-24">
+      <!-- HOME TAB -->
+      <section id="tab-home" class="space-y-8 py-6">
+        <div>
+          <h2 class="px-4 text-xl font-bold">Featured Videos</h2>
+          <div class="no-scrollbar mt-4 flex snap-x snap-mandatory scroll-px-4 space-x-4 overflow-x-auto px-4">
+            <!-- Card 1: Al-Fatihah -->
+            <article id="card-essence" class="w-72 flex-shrink-0 snap-start space-y-2 cursor-pointer">
+              <div class="aspect-video w-full rounded-xl bg-cover bg-center" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5GlIsHcxCOqDFYbHRO6PXnf7FdXcchcq2cbOMM0HJVHDAwlTtVkXh6F3EM7EN4Ph82hIHzpeA3EG1Rf1VaOi5kwHuEto93gMjJ2_I83CiEU4iTapHuiNqkQD1_GZdi92UXS9EWM_YMeUXilSniktByrIuklN5lsS3xi5rxiT8roI2t607vXjdEtfZoUZb-oyE78OxFyBghGyW-XR1LxMwNDaEONAqrCYvwZdM60_fblpuulaScIJpzAcoWYj-AaNvXKvkgo0moAc")'></div>
+              <div>
+                <h3 class="font-semibold">Tafsir Surah 1 Al-Fatihah</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Tafsir Surah Al-Fatihah</p>
+              </div>
+            </article>
+            <!-- Card 2: Al-Baqarah with segmented labels -->
+            <article id="card-divine" class="w-72 flex-shrink-0 snap-start space-y-2">
+              <div class="aspect-video w-full rounded-xl bg-cover bg-center" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWPZaFYXPH13GSFi8o-P4mLA5QJk3YF42ffdRoNyWdryAYoLIPPkP6ZwmoHo1uoi0ilBxdOtgMX6KSklB3eGZLXRKZu_0KYN8GXC8EfMpALB-6H-qZg305NJX3kHfaJMELpH7pmHFRlg_sy8rBGBWNwQLllxglQekFzhKcElVFuCy6XOFyLz8bfMMaBRCrbvzytUjy1Da8CTPmW5GBdOwtPUT6QDd0bTRfbDA9hlTdfNCr_fQ3Wu8ANVrXo3Fv_Otr0gQ1E9oeToE")'></div>
+              <div>
+                <h3 class="font-semibold">Tafsir Surah Al-Baqarah</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Pilih bahagian untuk dimainkan</p>
+                <div class="mt-2 flex flex-wrap gap-2">
+                  <button id="btn-baqarah-muq" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Muqaddimah</button>
+                  <button id="btn-baqarah-a1_5" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 1–5</button>
+                  <button id="btn-baqarah-a6_7" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 6–7</button>
+                </div>
+              </div>
+            </article>
+            <!-- Card 3 -->
+            <article class="w-72 flex-shrink-0 snap-start space-y-2">
+              <div class="aspect-video w-full rounded-xl bg-cover bg-center" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuDwRWz27j2hxqV_c1ImvUNjXtg3XIc-YDO-dJ9vp2MYHEWL5LLkLIpdaTZGoZPJIKIEFkzRYcEGIstL7nbRid1vO_w6GdN3CuZgRpV349t1g_9fsFV1GKiWNG622ABpL_nvUdM-bXYtYs3XbXfIiB-7Tk-mP9kd4_nSepGURwRgEzNmYFxFCg0NMWRBp1-1lIIhlERiZ0QGjSdZR2td_9D_bW0a6vBp9hhPuq1WGSC4cQ1bKEs5jDPmtARZy4t8nXN01NlAN2KsQPM")'></div>
+              <div>
+                <h3 class="font-semibold">Reflections on the Quran</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Deep insights into the holy book.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="px-4">
+          <h2 class="text-xl font-bold">Understanding Surah Al-Baqarah</h2>
+          <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Sheikh Omar Suleiman</p>
+          <div class="mt-3 aspect-video w-full rounded-xl bg-black/20"></div>
+          <div class="mt-4 border-b border-gray-200 dark:border-gray-700 flex space-x-4">
+            <button class="border-b-2 border-primary py-2 text-sm font-semibold text-primary">Tafsir</button>
+            <button class="border-b-2 border-transparent py-2 text-sm font-semibold text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary">Translation</button>
+          </div>
+          <p class="mt-3 text-base text-gray-700 dark:text-gray-300">In this session we explore selected verses and themes from Al-Baqarah.</p>
+        </div>
+      </section>
+
+      <!-- SEARCH TAB -->
+      <section id="tab-search" class="hidden py-6">
+        <div class="px-4">
+          <h2 class="text-xl font-bold">Cari Surah & Juz</h2>
+          <input id="searchInput" type="text" placeholder="Cari nama surah, nombor, atau juz" class="mt-3 w-full rounded-lg border border-gray-300/60 bg-white/70 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary dark:border-gray-700 dark:bg-gray-900/70 dark:text-gray-100" />
+          <div class="mt-4 flex gap-2">
+            <button id="btnListSurah" class="rounded-full border border-primary px-3 py-1 text-sm text-primary">Senarai Surah</button>
+            <button id="btnListJuz" class="rounded-full border border-gray-300 px-3 py-1 text-sm text-gray-700 dark:border-gray-700 dark:text-gray-300">Senarai Juz</button>
+          </div>
+          <div id="results" class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2"></div>
+        </div>
+      </section>
+
+      <!-- BOOKMARKS TAB -->
+      <section id="tab-bookmarks" class="hidden py-6">
+        <div class="px-4">
+          <h2 class="text-xl font-bold">Bookmarks</h2>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Belum ada simpanan.</p>
+        </div>
+      </section>
+
+      <!-- SETTINGS TAB -->
+      <section id="tab-settings" class="hidden py-6">
+        <div class="px-4 space-y-4">
+          <h2 class="text-xl font-bold">Settings</h2>
+          <div class="flex items-center justify-between rounded-lg border border-gray-200 p-3 dark:border-gray-700">
+            <span class="text-sm">Tema gelap</span>
+            <label class="relative inline-flex cursor-pointer items-center">
+              <input id="toggleDark" type="checkbox" class="peer sr-only" />
+              <div class="peer h-6 w-11 rounded-full bg-gray-300 after:absolute after:left-1 after:top-1 after:h-4 after:w-4 after:rounded-full after:bg-white after:transition-all peer-checked:bg-primary peer-checked:after:translate-x-5"></div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: Video Player -->
+      <section id="screen-video" class="hidden py-6">
+        <div class="px-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl font-bold">Now Playing</h2>
+            <button id="btnBackFromVideo" class="rounded-md border border-gray-300 px-3 py-1 text-sm hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-800">Back</button>
+          </div>
+          <div class="aspect-video w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-black">
+            <iframe id="videoFrame" src="" allow="autoplay" allowfullscreen class="h-full w-full"></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Nav -->
+    <footer class="fixed bottom-0 left-0 right-0 border-t border-gray-200/50 bg-background-light/80 pb-safe dark:border-gray-800/50 dark:bg-background-dark/80 backdrop-blur-sm">
+      <nav class="mx-auto grid max-w-7xl grid-cols-4 gap-2 px-4 pt-2">
+        <a data-tab="home" class="tablink flex flex-col items-center gap-1 py-1 text-primary" href="#">
+          <svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,0-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,16,0,0,1,224,115.55Z"></path></svg>
+          <span class="text-xs font-medium">Home</span>
+        </a>
+        <a data-tab="search" class="tablink flex flex-col items-center gap-1 py-1 text-gray-500 dark:text-gray-400" href="#">
+          <svg fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+          <span class="text-xs font-medium">Search</span>
+        </a>
+        <a data-tab="bookmarks" class="tablink flex flex-col items-center gap-1 py-1 text-gray-500 dark:text-gray-400" href="#">
+          <svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M184,32H72A16,16,0,0,0,56,48V224a8,8,0,0,0,12.24,6.78L128,193.43l59.77,37.35A8,8,0,0,0,200,224V48A16,16,0,0,0,184,32Zm0,176-56-35-56,35V48H184Z"></path></svg>
+          <span class="text-xs font-medium">Bookmarks</span>
+        </a>
+        <a data-tab="settings" class="tablink flex flex-col items-center gap-1 py-1 text-gray-500 dark:text-gray-400" href="#">
+          <svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M216.49,101.49,134.51,19.51a12,12,0,0,0-17,0L39.51,101.49a12,12,0,0,0,0,17l82,82a12,12,0,0,0,17,0l82-82a12,12,0,0,0,0-17ZM128,156a28,28,0,1,1,28-28A28,28,0,0,1,128,156Z"></path></svg>
+          <span class="text-xs font-medium">Settings</span>
+        </a>
+      </nav>
+    </footer>
+  </div>
+
+  <script>
+    // Data: Surah and Juz
+    const SURAH = [
+      "Al-Fatihah","Al-Baqarah","Ali Imran","An-Nisa'","Al-Ma'idah","Al-An'am","Al-A'raf","Al-Anfal","At-Tawbah","Yunus","Hud","Yusuf","Ar-Ra'd","Ibrahim","Al-Hijr","An-Nahl","Al-Isra'","Al-Kahf","Maryam","Ta Ha","Al-Anbiya'","Al-Hajj","Al-Mu'minun","An-Nur","Al-Furqan","Ash-Shu'ara'","An-Naml","Al-Qasas","Al-'Ankabut","Ar-Rum","Luqman","As-Sajdah","Al-Ahzab","Saba'","Fatir","Ya-Sin","As-Saffat","Sad","Az-Zumar","Ghafir","Fussilat","Ash-Shura","Az-Zukhruf","Ad-Dukhan","Al-Jathiyah","Al-Ahqaf","Muhammad","Al-Fath","Al-Hujurat","Qaf","Adz-Dzariyat","At-Tur","An-Najm","Al-Qamar","Ar-Rahman","Al-Waqi'ah","Al-Hadid","Al-Mujadilah","Al-Hashr","Al-Mumtahanah","As-Saff","Al-Jumu'ah","Al-Munafiqun","At-Taghabun","At-Talaq","At-Tahrim","Al-Mulk","Al-Qalam","Al-Haqqah","Al-Ma'arij","Nuh","Al-Jinn","Al-Muzzammil","Al-Muddaththir","Al-Qiyamah","Al-Insan","Al-Mursalat","An-Naba'","An-Nazi'at","'Abasa","At-Takwir","Al-Infitar","Al-Mutaffifin","Al-Inshiqaq","Al-Buruj","At-Tariq","Al-A'la","Al-Ghashiyah","Al-Fajr","Al-Balad","Ash-Shams","Al-Layl","Ad-Duha","Ash-Sharh","At-Tin","Al-'Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-'Adiyat","Al-Qari'ah","At-Takathur","Al-'Asr","Al-Humazah","Al-Fil","Quraisy","Al-Ma'un","Al-Kawthar","Al-Kafirun","An-Nasr","Al-Masad","Al-Ikhlas","Al-Falaq","An-Nas"
+    ];
+
+    const JUZ = [
+      "1. Alif Lam Mim","2. Sayaqulu","3. Tilkal Rusul","4. Lan Tanalu","5. Wal Muhsanat","6. La Yuhibbullah","7. Wa Idza Sami'u","8. Wa Lau Annana","9. Qalal Mala'u","10. Wa'lamu","11. Yata'adhdharun","12. Wa Mamin Dabbah","13. Wa Ma Ubarri'u","14. Rubama","15. Subhanalladhi","16. Qala Alam","17. Iqtaraba","18. Qad Aflaha","19. Wa Qalalladhina","20. Amman Khalaq","21. Utlu Ma Uhhiya","22. Wa Man Yaqnut","23. Wa Ma Li","24. Faman Azlamu","25. Ilaihi Yuraddu","26. Ha Mim","27. Qala Fama Khatbukuma","28. Qad Sami'allahu","29. Tabarakalladhi","30. Amma"
+    ];
+
+    // Tabs state
+    const tabs = {
+      home: document.getElementById('tab-home'),
+      search: document.getElementById('tab-search'),
+      bookmarks: document.getElementById('tab-bookmarks'),
+      settings: document.getElementById('tab-settings')
+    };
+
+    function setActiveTab(name){
+      for(const k in tabs){ tabs[k].classList.toggle('hidden', k !== name); }
+      document.querySelectorAll('.tablink').forEach(a => {
+        const active = a.dataset.tab === name;
+        a.classList.toggle('text-primary', active);
+        a.classList.toggle('text-gray-500', !active);
+      });
+      if(name === 'search'){ renderSurah(); }
+    }
+
+    document.querySelectorAll('[data-tab]').forEach(el => el.addEventListener('click', e => {
+      e.preventDefault();
+      if(el.dataset.tab === 'home') { backToHome(); return; }
+      setActiveTab(el.dataset.tab);
+    }));
+
+    // Theme toggle
+    const toggleDark = document.getElementById('toggleDark');
+    const btnToggleTheme = document.getElementById('btnToggleTheme');
+    function applyTheme(){
+      const dark = localStorage.getItem('qi-dark') === '1';
+      document.documentElement.classList.toggle('dark', dark);
+      if(toggleDark) toggleDark.checked = dark;
+    }
+    applyTheme();
+    if(toggleDark){ toggleDark.addEventListener('change', () => { localStorage.setItem('qi-dark', toggleDark.checked ? '1':'0'); applyTheme(); }); }
+    if(btnToggleTheme){ btnToggleTheme.addEventListener('click', () => { const cur = localStorage.getItem('qi-dark') === '1'; localStorage.setItem('qi-dark', cur ? '0':'1'); applyTheme(); }); }
+
+    // Search rendering
+    const results = document.getElementById('results');
+    const searchInput = document.getElementById('searchInput');
+    const btnListSurah = document.getElementById('btnListSurah');
+    const btnListJuz = document.getElementById('btnListJuz');
+    let currentList = 'surah';
+
+    function renderSurah(filter=''){
+      currentList = 'surah';
+      btnListSurah?.classList.replace('border-gray-300','border-primary');
+      btnListSurah?.classList.replace('text-gray-700','text-primary');
+      btnListJuz?.classList.replace('border-primary','border-gray-300');
+      btnListJuz?.classList.replace('text-primary','text-gray-700');
+      results.innerHTML = SURAH
+        .map((name, i) => ({idx: i+1, name}))
+        .filter(x => (x.idx+" "+x.name).toLowerCase().includes(filter.toLowerCase()))
+        .map(x => `
+          <button class="group flex items-center justify-between rounded-lg border border-gray-200 px-3 py-2 text-left hover:border-primary hover:bg-white/60 dark:border-gray-700 dark:hover:bg-gray-900/40">
+            <span class="flex items-center gap-3"><span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-xs font-semibold text-primary">${x.idx}</span><span class="font-medium">${x.name}</span></span>
+            <span class="text-xs text-gray-500 group-hover:text-primary">Open</span>
+          </button>
+        `).join('');
+    }
+
+    function renderJuz(filter=''){
+      currentList = 'juz';
+      btnListJuz?.classList.replace('border-gray-300','border-primary');
+      btnListJuz?.classList.replace('text-gray-700','text-primary');
+      btnListSurah?.classList.replace('border-primary','border-gray-300');
+      btnListSurah?.classList.replace('text-primary','text-gray-700');
+      results.innerHTML = JUZ
+        .filter(s => s.toLowerCase().includes(filter.toLowerCase()))
+        .map(s => `
+          <div class="flex items-center justify-between rounded-lg border border-gray-200 px-3 py-2 dark:border-gray-700">
+            <span class="font-medium">${s}</span>
+            <span class="text-xs text-gray-500">Open</span>
+          </div>
+        `).join('');
+    }
+
+    searchInput?.addEventListener('input', () => {
+      const q = searchInput.value.trim();
+      if(currentList === 'surah') renderSurah(q); else renderJuz(q);
+    });
+    btnListSurah?.addEventListener('click', () => { renderSurah(searchInput?.value.trim() || ''); });
+    btnListJuz?.addEventListener('click', () => { renderJuz(searchInput?.value.trim() || ''); });
+
+    // Video screen controls
+    const screenVideo = document.getElementById('screen-video');
+    const videoFrame = document.getElementById('videoFrame');
+    const btnBackFromVideo = document.getElementById('btnBackFromVideo');
+    const essenceCard = document.getElementById('card-essence');
+    const btnMuq = document.getElementById('btn-baqarah-muq');
+    const btnA15 = document.getElementById('btn-baqarah-a1_5');
+    const btnA67 = document.getElementById('btn-baqarah-a6_7');
+
+    function showOnlyScreenVideo(url){
+      for(const k in tabs){ tabs[k].classList.add('hidden'); }
+      screenVideo.classList.remove('hidden');
+      videoFrame.src = url;
+      document.querySelectorAll('.tablink').forEach(a => { a.classList.remove('text-primary'); a.classList.add('text-gray-500'); });
+    }
+    function backToHome(){
+      videoFrame.src = '';
+      screenVideo.classList.add('hidden');
+      setActiveTab('home');
+    }
+
+    essenceCard?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1o1YCD4EseZSai_Zy4QbClw68LbnTaTmG/preview'));
+    btnMuq?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/18ngazXBmokOvcdLnOpPofiLRHpyb_qbg/preview'));
+    btnA15?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/18TxjIGizMURlRtcoH2gVg-6gmXp7xRfK/preview'));
+    btnA67?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1bJkAhfii-ysDjGOAcn4er02AinkL_NsV/preview'));
+
+    btnBackFromVideo?.addEventListener('click', backToHome);
+
+    // Initial
+    setActiveTab('home');
+  </script>
+</body>
+</html>
