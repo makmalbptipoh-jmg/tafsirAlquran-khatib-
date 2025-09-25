@@ -64,15 +64,9 @@
               <div>
                 <h3 class="font-semibold">Tafsir Surah Al-Baqarah</h3>
                 <p class="text-sm text-gray-500 dark:text-gray-400">Pilih bahagian untuk dimainkan</p>
-                <div class="mt-2 flex flex-wrap gap-2">
-                  <button id="btn-baqarah-muq" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Muqaddimah</button>
-                  <button id="btn-baqarah-a1_5" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 1–5</button>
-                  <button id="btn-baqarah-a6_7" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 6–7</button>
-                  <button id="btn-baqarah-a8_12" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 8–12</button>
-                  <button id="btn-baqarah-a13_20" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 13–20</button>
-                  <button id="btn-baqarah-a21_22" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 21–22</button>
-                  <button id="btn-baqarah-a23_24" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 23–24</button>
-                  <button id="btn-baqarah-a25_29" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 25–29</button>
+                <div class="mt-2 flex items-center gap-2">
+                  <select id="select-baqarah" class="w-full max-w-[220px] rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"></select>
+                  <button id="btn-play-baqarah" class="rounded-full border border-primary px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10">Play</button>
                 </div>
               </div>
             </article>
@@ -269,10 +263,8 @@
     const videoFrame = document.getElementById('videoFrame');
     const btnBackFromVideo = document.getElementById('btnBackFromVideo');
     const essenceCard = document.getElementById('card-essence');
-    const btnMuq = document.getElementById('btn-baqarah-muq');
-    const btnA15 = document.getElementById('btn-baqarah-a1_5');
-    const btnA67 = document.getElementById('btn-baqarah-a6_7');
-    const btnA812 = document.getElementById('btn-baqarah-a8_12');
+    const selectBaqarah = document.getElementById('select-baqarah');
+    const btnPlayBaqarah = document.getElementById('btn-play-baqarah');
     const btnA1320 = document.getElementById('btn-baqarah-a13_20');
     const btnA2122 = document.getElementById('btn-baqarah-a21_22');
     const btnA2324 = document.getElementById('btn-baqarah-a23_24');
@@ -291,14 +283,32 @@
     }
 
     essenceCard?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1o1YCD4EseZSai_Zy4QbClw68LbnTaTmG/preview'));
-    btnMuq?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/18ngazXBmokOvcdLnOpPofiLRHpyb_qbg/preview'));
-    btnA15?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/18TxjIGizMURlRtcoH2gVg-6gmXp7xRfK/preview'));
-    btnA67?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1bJkAhfii-ysDjGOAcn4er02AinkL_NsV/preview'));
-    btnA812?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1nw72dK-ZABV13_DK0mXoD-T4xCFVd7zy/preview'));
-    btnA1320?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1H_Eu74Db9OoNUl-dIy-eev7tk455609e/preview'));
-    btnA2122?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1-7cRxVirnBkSYFT3UJgdMFwt10bfgo5K/preview'));
-    btnA2324?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1Vvyl8suS61FnItpcVyfGnSw4Tfimncjq/preview'));
-    btnA2529?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1lvaW1oRAxNPZxzgM0DTHcObLUpZIB82c/preview'));
+
+    const BAQARAH_PARTS = [
+      { label: 'Muqaddimah', url: 'https://drive.google.com/file/d/18ngazXBmokOvcdLnOpPofiLRHpyb_qbg/preview' },
+      { label: 'Ayat 1–5', url: 'https://drive.google.com/file/d/18TxjIGizMURlRtcoH2gVg-6gmXp7xRfK/preview' },
+      { label: 'Ayat 6–7', url: 'https://drive.google.com/file/d/1bJkAhfii-ysDjGOAcn4er02AinkL_NsV/preview' },
+      { label: 'Ayat 8–12', url: 'https://drive.google.com/file/d/1nw72dK-ZABV13_DK0mXoD-T4xCFVd7zy/preview' },
+      { label: 'Ayat 13–20', url: 'https://drive.google.com/file/d/1H_Eu74Db9OoNUl-dIy-eev7tk455609e/preview' },
+      { label: 'Ayat 21–22', url: 'https://drive.google.com/file/d/1-7cRxVirnBkSYFT3UJgdMFwt10bfgo5K/preview' },
+      { label: 'Ayat 23–24', url: 'https://drive.google.com/file/d/1Vvyl8suS61FnItpcVyfGnSw4Tfimncjq/preview' },
+      { label: 'Ayat 25–29', url: 'https://drive.google.com/file/d/1lvaW1oRAxNPZxzgM0DTHcObLUpZIB82c/preview' }
+    ];
+
+    function populateBaqarah(){
+      if(!selectBaqarah) return;
+      selectBaqarah.innerHTML = BAQARAH_PARTS.map((p,i)=>`<option value="${i}">${p.label}</option>`).join('');
+    }
+    populateBaqarah();
+
+    function playSelectedBaqarah(){
+      const idx = Number(selectBaqarah?.value || 0);
+      const chosen = BAQARAH_PARTS[idx] || BAQARAH_PARTS[0];
+      showOnlyScreenVideo(chosen.url);
+    }
+
+    selectBaqarah?.addEventListener('change', playSelectedBaqarah);
+    btnPlayBaqarah?.addEventListener('click', playSelectedBaqarah);
 
     btnBackFromVideo?.addEventListener('click', backToHome);
 
