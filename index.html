@@ -70,6 +70,7 @@
                   <button id="btn-baqarah-a6_7" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 6–7</button>
                   <button id="btn-baqarah-a8_12" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 8–12</button>
                   <button id="btn-baqarah-a13_20" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 13–20</button>
+                  <button id="btn-baqarah-a21_22" class="rounded-full border border-primary px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10">Ayat 21–22</button>
                 </div>
               </div>
             </article>
@@ -271,6 +272,7 @@
     const btnA67 = document.getElementById('btn-baqarah-a6_7');
     const btnA812 = document.getElementById('btn-baqarah-a8_12');
     const btnA1320 = document.getElementById('btn-baqarah-a13_20');
+    const btnA2122 = document.getElementById('btn-baqarah-a21_22');
 
     function showOnlyScreenVideo(url){
       for(const k in tabs){ tabs[k].classList.add('hidden'); }
@@ -290,6 +292,7 @@
     btnA67?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1bJkAhfii-ysDjGOAcn4er02AinkL_NsV/preview'));
     btnA812?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1nw72dK-ZABV13_DK0mXoD-T4xCFVd7zy/preview'));
     btnA1320?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1H_Eu74Db9OoNUl-dIy-eev7tk455609e/preview'));
+    btnA2122?.addEventListener('click', () => showOnlyScreenVideo('https://drive.google.com/file/d/1-7cRxVirnBkSYFT3UJgdMFwt10bfgo5K/preview'));
 
     btnBackFromVideo?.addEventListener('click', backToHome);
 
