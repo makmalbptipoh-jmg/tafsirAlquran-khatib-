@@ -63,9 +63,19 @@
               <div class="aspect-video w-full rounded-xl bg-cover bg-center" style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWPZaFYXPH13GSFi8o-P4mLA5QJk3YF42ffdRoNyWdryAYoLIPPkP6ZwmoHo1uoi0ilBxdOtgMX6KSklB3eGZLXRKZu_0KYN8GXC8EfMpALB-6H-qZg305NJX3kHfaJMELpH7pmHFRlg_sy8rBGBWNwQLllxglQekFzhKcElVFuCy6XOFyLz8bfMMaBRCrbvzytUjy1Da8CTPmW5GBdOwtPUT6QDd0bTRfbDA9hlTdfNCr_fQ3Wu8ANVrXo3Fv_Otr0gQ1E9oeToE")'></div>
               <div>
                 <h3 class="font-semibold">Tafsir Surah Al-Baqarah</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400">Pilih bahagian untuk dimainkan</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Pilih bahagian dan tekan Play</p>
                 <div class="mt-2 flex items-center gap-2">
-                  <select id="select-baqarah" class="w-full max-w-[220px] rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"></select>
+                  <label for="select-baqarah" class="sr-only">Pilih bahagian</label>
+                  <select id="select-baqarah" class="w-full max-w-[240px] rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+                    <option value="0">Muqaddimah</option>
+                    <option value="1">Ayat 1–5</option>
+                    <option value="2">Ayat 6–7</option>
+                    <option value="3">Ayat 8–12</option>
+                    <option value="4">Ayat 13–20</option>
+                    <option value="5">Ayat 21–22</option>
+                    <option value="6">Ayat 23–24</option>
+                    <option value="7">Ayat 25–29</option>
+                  </select>
                   <button id="btn-play-baqarah" class="rounded-full border border-primary px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10">Play</button>
                 </div>
               </div>
@@ -299,7 +309,7 @@
       if(!selectBaqarah) return;
       selectBaqarah.innerHTML = BAQARAH_PARTS.map((p,i)=>`<option value="${i}">${p.label}</option>`).join('');
     }
-    populateBaqarah();
+    populateBaqarah?.();
 
     function playSelectedBaqarah(){
       const idx = Number(selectBaqarah?.value || 0);
